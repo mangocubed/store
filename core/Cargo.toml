@@ -1,0 +1,10 @@
+[package]
+name = "store-core"
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+homepage.workspace = true
+repository.workspace = true
+
+[dependencies]
+sdk = { workspace = true, features = ["core"] }

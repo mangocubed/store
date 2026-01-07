@@ -1,0 +1,24 @@
+[workspace]
+resolver = "3"
+members = ["app", "core"]
+
+[workspace.package]
+version = "0.0.0-alpha.0"
+edition = "2024"
+authors = ["Javier E. <jaedns@gmail.com>"]
+homepage = "https://store.mango3.app"
+repository = "https://github.com/mangocubed/store"
+
+[workspace.dependencies]
+store-core = { path = "core" }
+sdk = { git = "https://github.com/mangocubed/sdk.git", tag = "v0.0.0-alpha.26", features = [
+    "auth-client",
+] }
+
+[profile.release]
+opt-level = "z"
+debug = false
+lto = true
+codegen-units = 1
+panic = "abort"
+incremental = false

@@ -1,0 +1,36 @@
+[package]
+name = "store-app"
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+homepage.workspace = true
+repository.workspace = true
+
+[build-dependencies]
+chrono = { version = "0.4.42", features = ["serde"] }
+sdk = { workspace = true, features = ["build"] }
+
+[dependencies]
+axum = { version = "0.8.8", optional = true }
+dioxus = { version = "0.7.2", features = ["router", "fullstack"] }
+serde_json = "1.0.149"
+tokio = { version = "1.49.0", features = [
+    "fs",
+    "macros",
+    "rt-multi-thread",
+], optional = true }
+store-core = { workspace = true, optional = true }
+sdk = { workspace = true, features = ["app"] }
+
+[features]
+default = ["web"]
+web = ["dioxus/web", "sdk/web"]
+desktop = ["dioxus/desktop", "sdk/desktop"]
+mobile = ["dioxus/mobile", "sdk/mobile"]
+server = [
+    "dep:axum",
+    "dep:tokio",
+    "dep:store-core",
+    "dioxus/server",
+    "sdk/server",
+]
